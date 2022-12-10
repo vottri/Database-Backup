@@ -52,9 +52,13 @@ sqlcmd -S localhost -U sa -P P@ssw0rd
 4> quantity int
 5> );
 6> go
-1> INSERT INTO dbo.Inventory VALUES('banana',150),('orange',165),('apple',120);
+1> INSERT INTO dbo.Inventory VALUES('banana',150),('orange',164),('apple',120);
+2> go
+1> SELECT * from dbo.Inventoy;
 2> go
 ```
+![sql_query](https://raw.githubusercontent.com/vottri/Database-Backup/main/material/SQL%20query.png)
+
 ### Backup Script for SQL Server Database
 
 - Create Backup Directory
