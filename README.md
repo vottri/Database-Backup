@@ -28,7 +28,7 @@ Automate script to perform database backup daily.
 - Verify MSSQL Server Service Is Running
 
       systemctl status mssql-server
-       
+             
 - Install MSSQL Server Command Line Tools
 
       curl https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
@@ -47,18 +47,21 @@ sqlcmd -S localhost -U sa -P P@ssw0rd
 1> USE Shop;
 2> go
 1> CREATE TABLE dbo.Inventory (
-2> id int IDENTITY(1,1) NOT NULL PRIMARY KEY,
-3> name nvarchar(50),
-4> quantity int
+2> id INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+3> name NVARCHAR(50),
+4> quantity INT
 5> );
 6> go
 1> INSERT INTO dbo.Inventory VALUES('banana',150),('orange',164),('apple',120);
 2> go
-1> SELECT * from dbo.Inventoy;
+1> SELECT * FROM dbo.Inventoy;
 2> go
 ```
 ![sql_query](https://raw.githubusercontent.com/vottri/Database-Backup/main/material/SQL%20query.png)
 
+```sql
+1> exit
+```
 ### Backup Script for SQL Server Database
 
 - Create Backup Directory
@@ -87,8 +90,10 @@ sqlcmd -S localhost -U sa -P P@ssw0rd
       chmod 775 sqlbackupjob.sh
       crontab -e
       0 0 * * * /bin/sh ~/sqlbackupjob.sh
+      
+- Check Your Backup Files 
 
-
+![syslog](https://raw.githubusercontent.com/vottri/Database-Backup/main/material/syslog.png)
 
 
        
