@@ -174,7 +174,7 @@ You can create a SQL Server backup by running the SQL command **BACKUP DATABASE*
 BACKUP DATABASE [database-name] TO DISK = "/sql-backup/database-name.bak";
 ```
 
-Furthermore, if you want to run your **BACKUP DATABASE** command as an arbitrary query, use the (**-Q**) parameter together with **sqlcmd**, like this:
+Furthermore, if you want to run your **BACKUP DATABASE** command as an query without the need to go inside your database, use the (**-Q**) parameter together with **sqlcmd**, like this:
 
 ```sql
 sqlcmd -U sa -P my-password -Q "BACKUP DATABASE [database-name] TO DISK = '/sql-backup/database-name.bak';"
