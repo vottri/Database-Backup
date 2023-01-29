@@ -115,7 +115,7 @@ o Confirm the SQL Server system administrator password: P@ssw0rd
 systemctl status mssql-server
 ```             
 
-![mssqlstatus](https://raw.githubusercontent.com/vottri/Database-Backup/main/material/mssqlstatus.png)
+![mssqlstatus1](https://raw.githubusercontent.com/vottri/Database-Backup/main/material/mssqlstatus1.png)
 
 - **Install MSSQL Server Command Line Tools**
 
