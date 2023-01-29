@@ -154,7 +154,7 @@ sqlcmd -S localhost -U sa -P P@ssw0rd
 1> exit
 ```
 
-### Backup Script for SQL Server Database
+### Backup SQL Server Database
 
 - **Create Backup Directory**
 
@@ -164,6 +164,24 @@ sudo chown mssql:root /sql-backup/
 sudo chmod 775 /sql-backup/
 ```
 
+SQL Server is running on behalf of the **mssql** user. The **mssql** user must have write permissions to the backup directory.
+
+- **How does SQL Server create a backup?**
+
+You can create a SQL Server backup by running the SQL command **BACKUP DATABASE**. This command saves the backup file to a specified directory. you just need to specify the path to the directory where you want to save your backup:
+
+```sql
+BACKUP DATABASE [database-name] TO DISK = "/sql-backup/database-name.bak";
+```
+
+Furthermore, if you want to run your **BACKUP DATABASE** command as an arbitrary query, use the (**-Q**) parameter together with **sqlcmd**, like this:
+
+```sql
+sqlcmd -U sa -P my-password -Q "BACKUP DATABASE [database-name] TO DISK = '/sql-backup/database-name.bak';"
+```
+
+Backups should be created regularly and automatically. You can automate SQL Server backups by using Shell script and crontab.
+
 - **Script to Backup Database with Date**
 
 ```
@@ -172,10 +190,12 @@ nano sqlbackupjob.sh
 
 ```sh
 #!/bin/bash
-BACKUP_FOLDER='/sql-backup';
+
 DATABASE='Shop';
 USER='sa';
 PASS='P@ssw0rd';
+
+BACKUP_FOLDER='/sql-backup';
 FILENAME=$(date +$DATABASE-%d-%m-%Y-%H-%M-%S.bak);
 
 /opt/mssql-tools/bin/sqlcmd -S localhost -U $USER -P $PASS -Q "backup database $DATABASE to disk='$BACKUP_FOLDER/$FILENAME';"
